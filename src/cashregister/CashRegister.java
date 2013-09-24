@@ -1,11 +1,7 @@
 package cashregister;
 
+import java.util.Scanner;
 
 public class CashRegister {
-
-    
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
-
+   Scanner keyboard = new Scanner(System.in); 
 }
