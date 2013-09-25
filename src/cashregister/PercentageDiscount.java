@@ -1,10 +1,10 @@
 package cashregister;
 
 public class PercentageDiscount implements Discount{
-
+    private final double PERCENT_DISCOUNT = 0.9;
     @Override
-    public void applyDiscount(double price) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public double applyDiscountToPrice(double price) {
+        return price * PERCENT_DISCOUNT;
     }
     
 }

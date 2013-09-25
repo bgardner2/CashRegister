@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Customer {
     Scanner keyboard = new Scanner(System.in);
-    
+    private final String TEST_CUST_ID = "BG001";
     private final String TEST_FIRST_NAME = "Ben";
     private final String TEST_LAST_NAME = "Gardner";
     private final String TEST_STREET1 = "1234 Main Street";
@@ -13,7 +13,7 @@ public class Customer {
     private final String TEST_STATE = "Wi";
     private final String TEST_ZIP = "53089";
     
-    
+    private String customerID;
     private String firstName;
     private String lastName;
     private String street1;
@@ -24,6 +24,7 @@ public class Customer {
     
     //Create a new blank customer, and get all information for it from the keyboard
     public Customer(){
+        this.customerID = TEST_CUST_ID;
         this.firstName = TEST_FIRST_NAME;
         this.lastName = TEST_LAST_NAME;
         this.street1 = TEST_STREET1;
@@ -41,8 +42,9 @@ public class Customer {
         */
     }
     
-    public Customer(String firstName, String lastName, String street1, String street2, String city, String state, String zip) 
+    public Customer(String customerID, String firstName, String lastName, String street1, String street2, String city, String state, String zip) 
     {
+        this.customerID = customerID;
         this.firstName = firstName;
         this.lastName = lastName;
         this.street1 = street1;
@@ -51,59 +53,15 @@ public class Customer {
         this.state = state;
         this.zip = zip;
     }
-    
-    private void initializeCustomer(){
-        //Get input for first name
-        do
-        {
-            System.out.print("Enter customer first name: ");
-            firstName = keyboard.nextLine();
-        }while(firstName.equals("") || firstName == null);
-        
-        //Get input for last name
-        do
-        {
-            System.out.print("Enter customer last name: ");
-            lastName = keyboard.nextLine();
-        }while(lastName.equals("") || lastName == null);
-        
-        //Get input for street1
-        do
-        {
-            System.out.print("Enter customer Street 1 address: ");
-            street1 = keyboard.nextLine();
-        }while(street1.equals("") || street1 == null);
-        
-        //Get input for street 2
-        do
-        {
-            System.out.print("Enter customer street 2 address: ");
-            street2 = keyboard.nextLine();
-        }while(street2.equals("") || street2 == null);
-        
-        //Get input for city
-        do
-        {
-            System.out.print("Enter customer city: ");
-            city = keyboard.nextLine();
-        }while(city.equals("") || city == null);
-        
-        //Get input for state
-        do
-        {
-            System.out.print("Enter customer state: ");
-            state = keyboard.nextLine();
-        }while(state.equals("") || state == null);
-        
-        //Get input for zip
-        do
-        {
-            System.out.print("Enter customer zip: ");
-            zip = keyboard.nextLine();
-        }while(zip.equals("") || zip == null);
-            
+
+    public String getCustomerID() {
+        return customerID;
     }
-        
+
+    public void setCustomerID(String customerID) {
+        this.customerID = customerID;
+    }
+    
     public String getFirstName() {
         return firstName;
     }
@@ -158,6 +116,59 @@ public class Customer {
 
     public void setZip(String zip) {
         this.zip = zip;
+    }
+    
+    //Unused for now
+    private void initializeCustomer(){
+        //Get input for first name
+        do
+        {
+            System.out.print("Enter customer first name: ");
+            firstName = keyboard.nextLine();
+        }while(firstName.equals("") || firstName == null);
+        
+        //Get input for last name
+        do
+        {
+            System.out.print("Enter customer last name: ");
+            lastName = keyboard.nextLine();
+        }while(lastName.equals("") || lastName == null);
+        
+        //Get input for street1
+        do
+        {
+            System.out.print("Enter customer Street 1 address: ");
+            street1 = keyboard.nextLine();
+        }while(street1.equals("") || street1 == null);
+        
+        //Get input for street 2
+        do
+        {
+            System.out.print("Enter customer street 2 address: ");
+            street2 = keyboard.nextLine();
+        }while(street2.equals("") || street2 == null);
+        
+        //Get input for city
+        do
+        {
+            System.out.print("Enter customer city: ");
+            city = keyboard.nextLine();
+        }while(city.equals("") || city == null);
+        
+        //Get input for state
+        do
+        {
+            System.out.print("Enter customer state: ");
+            state = keyboard.nextLine();
+        }while(state.equals("") || state == null);
+        
+        //Get input for zip
+        do
+        {
+            System.out.print("Enter customer zip: ");
+            zip = keyboard.nextLine();
+        }while(zip.equals("") || zip == null);
+            
     }
     
 }

@@ -3,7 +3,12 @@ package cashregister;
 public class DatabaseReader implements StorageReader {
 
     @Override
-    public Product getProduct() {
+    public Product getProductByID(String itemNo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Customer getCustomerbyID(String custNo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

@@ -3,8 +3,8 @@ package cashregister;
 public class FlatRateDiscount implements Discount{
 
     @Override
-    public void applyDiscount(double price) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public double applyDiscountToPrice(double price) {
+        return price - 2.00;
     }
     
 }

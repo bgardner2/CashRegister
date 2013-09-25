@@ -1,5 +1,5 @@
 package cashregister;
 
 public interface Discount {
-    public abstract void applyDiscount(double price);
+    public abstract double applyDiscountToPrice(double price);
 }
