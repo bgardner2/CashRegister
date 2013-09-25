@@ -24,8 +24,8 @@ public class Product {
         this.discount = discount;
     }
     
-    public double applyDiscount(){
-        return discount.applyDiscountToPrice(price);
+    public double returnDiscountedPrice(){
+        return discount.returnDiscountedPrice(price);
     }
 
     public String getProductDesc() {

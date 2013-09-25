@@ -3,7 +3,7 @@ package cashregister;
 public class NoDiscount implements Discount {
 
     @Override
-    public double applyDiscountToPrice(double price) {
+    public double returnDiscountedPrice(double price) {
         return price;
     }
     

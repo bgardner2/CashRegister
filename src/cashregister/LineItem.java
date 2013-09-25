@@ -15,8 +15,8 @@ public class LineItem {
             
     }
     
-    public double applyDiscount(){
-        return product.applyDiscount();
+    public double returnDiscountedPrice(){
+        return product.returnDiscountedPrice();
     }
     
     public Product getCurrentLineProduct(){

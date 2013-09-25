@@ -93,7 +93,7 @@ public class Receipt {
                     + items.getItemQty() + "\t\t\t\t\t"
                     + formatter.format(items.getCurrentLineProduct().getPrice())+ "\t\t\t\t"
                     + formatter.format(items.getCurrentLineProduct().getPrice() * items.getItemQty()) + "\t\t\t\t"
-                    + formatter.format(items.applyDiscount() * items.getItemQty())
+                    + formatter.format(items.returnDiscountedPrice() * items.getItemQty())
                     + "\n";
         }
         
@@ -105,9 +105,9 @@ public class Receipt {
         double amountSaved = 0;
         
         for(LineItem items : lineItems){
-            total += items.applyDiscount() * items.getItemQty();
+            total += items.returnDiscountedPrice() * items.getItemQty();
             amountSaved += (items.getCurrentLineProduct().getPrice() * items.getItemQty()) 
-                    - items.applyDiscount() * items.getItemQty();
+                    - items.returnDiscountedPrice() * items.getItemQty();
             
         }
         
