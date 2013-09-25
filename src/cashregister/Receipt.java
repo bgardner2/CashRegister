@@ -1,9 +1,12 @@
 package cashregister;
 
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
 public class Receipt {
     NumberFormat formatter = NumberFormat.getCurrencyInstance();
+    DecimalFormat receiptFormatNumber = new DecimalFormat("0000");
+    
     
     public static int receiptNumber = 0;
     private LineItem[] lineItems = new LineItem[1];
@@ -12,25 +15,15 @@ public class Receipt {
     private Store store = new Store();
     
 
-    public Receipt() {
-        this.initializeReceipt();
-        
-    }
-
-    public Receipt(String custNo) {
-        sm.setStorageType(new FakeDatabaseReader());
+    public Receipt(String custNo, StorageReader reader) {
+        sm.setStorageType(reader);
         customer = sm.getCustomerByID(custNo);
         receiptNumber++;
-
+        
     }
 
     public Customer getCustomer() {
         return customer;
-    }
-
-    private void initializeReceipt() {
-        customer = new Customer();
-        receiptNumber++;
     }
 
     public void addLine(String productID, int qty) {
@@ -44,7 +37,7 @@ public class Receipt {
              * If found, break out of the method
              */
             for (LineItem item : lineItems) {
-                if (item.returnProduct().getProductID().equals(productID)) {
+                if (item.getCurrentLineProduct().getProductID().equals(productID)) {
                     item.setItemQty(item.getItemQty() + qty);
                     return;
                 }
@@ -72,7 +65,8 @@ public class Receipt {
         String header = "";
         //Add store information
         header += store.getFormattedAddress() + "\n"
-                + store.getPhoneNumber()
+                + store.getPhoneNumber() + "\n"
+                + "Transaction Number: #" + receiptFormatNumber.format(receiptNumber)
                 + "\n\n";
         
         //Add customer greeting
@@ -88,17 +82,17 @@ public class Receipt {
         String lineHeader = "";
         String item = "";
         item += "Product Description\t\t"
-                + "Product Quantity\t\t"
+                + "Quantity\t\t\t"
                 + "Product Base Price\t\t"
                 + "Product Extended Price\t\t"
                 + "Price after discount\n\n";
         
         //Add line item information
         for (LineItem items : lineItems) {
-            item += items.returnProduct().getProductDesc() + "\t\t"
-                    + items.getItemQty() + "\t\t\t\t\t\t"
-                    + formatter.format(items.returnProduct().getPrice())+ "\t\t\t\t"
-                    + formatter.format(items.returnProduct().getPrice() * items.getItemQty()) + "\t\t\t\t"
+            item += items.getCurrentLineProduct().getProductDesc() + "\t\t"
+                    + items.getItemQty() + "\t\t\t\t\t"
+                    + formatter.format(items.getCurrentLineProduct().getPrice())+ "\t\t\t\t"
+                    + formatter.format(items.getCurrentLineProduct().getPrice() * items.getItemQty()) + "\t\t\t\t"
                     + formatter.format(items.applyDiscount() * items.getItemQty())
                     + "\n";
         }
@@ -108,15 +102,19 @@ public class Receipt {
     
     private String buildReceiptFooter(){
         double total = 0;
+        double amountSaved = 0;
         
         for(LineItem items : lineItems){
             total += items.applyDiscount() * items.getItemQty();
+            amountSaved += (items.getCurrentLineProduct().getPrice() * items.getItemQty()) 
+                    - items.applyDiscount() * items.getItemQty();
+            
         }
         
         String footer = "";
-        footer += "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t---------------------\n";
+        footer += "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t------------------------\n";
         footer += "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" + "Total" + "\t\t" + formatter.format(total);
-        
+        footer += "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" + "Amount Saved" + "\t" + formatter.format(amountSaved);
         
         return footer;
         

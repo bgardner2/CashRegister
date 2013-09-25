@@ -19,7 +19,7 @@ public class LineItem {
         return product.applyDiscount();
     }
     
-    public Product returnProduct(){
+    public Product getCurrentLineProduct(){
         return product;
     }
     

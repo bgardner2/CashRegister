@@ -6,11 +6,12 @@ public class CashRegister {
    private Scanner keyboard = new Scanner(System.in); 
    private Receipt receipt;
    
-   public void startTransaction(String custNo){
-       receipt = new Receipt(custNo);
+   public void startTransaction(String custNo, StorageReader reader){
+       receipt = new Receipt(custNo, reader);
+       
    }
    
-   public void addItem(String productID, int qty){
+   public void addItemToReceipt(String productID, int qty){
        receipt.addLine(productID, qty);
    }
    
