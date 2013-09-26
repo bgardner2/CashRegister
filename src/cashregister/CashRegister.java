@@ -12,7 +12,7 @@ public class CashRegister {
    }
    
    public void addItemToReceipt(String productID, int qty){
-       receipt.addLine(productID, qty);
+       receipt.addItemToLine(productID, qty);
    }
    
    public String returnCustName(){

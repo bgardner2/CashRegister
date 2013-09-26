@@ -26,7 +26,7 @@ public class Receipt {
         return customer;
     }
 
-    public void addLine(String productID, int qty) {
+    public void addItemToLine(String productID, int qty) {
         if (lineItems[0] == null) {
             lineItems[0] = new LineItem(productID, qty);
         }
@@ -92,7 +92,7 @@ public class Receipt {
             item += items.getCurrentLineProduct().getProductDesc() + "\t\t"
                     + items.getItemQty() + "\t\t\t\t\t"
                     + formatter.format(items.getCurrentLineProduct().getPrice())+ "\t\t\t\t"
-                    + formatter.format(items.getCurrentLineProduct().getPrice() * items.getItemQty()) + "\t\t\t\t"
+                    + formatter.format(items.getCurrentLineProduct().getPrice() * items.getItemQty()) + "\t\t\t\t\t"
                     + formatter.format(items.returnDiscountedPrice() * items.getItemQty())
                     + "\n";
         }
