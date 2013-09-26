@@ -16,6 +16,7 @@ public class Receipt {
     
 
     public Receipt(String custNo, StorageReader reader) {
+        //Need to validate input
         sm.setStorageType(reader);
         customer = sm.getCustomerByID(custNo);
         receiptNumber++;
@@ -27,6 +28,7 @@ public class Receipt {
     }
 
     public void addItemToLine(String productID, int qty) {
+        //Need to validate input
         if (lineItems[0] == null) {
             lineItems[0] = new LineItem(productID, qty);
         }

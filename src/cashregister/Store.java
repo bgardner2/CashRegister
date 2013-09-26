@@ -34,6 +34,7 @@ public class Store {
     }
 
     public Store(String companyName, String street1, String street2, String city, String state, String zip) {
+        //Need to validate input
         this.companyName = companyName;
         this.street1 = street1;
         this.street2 = street2;
@@ -48,6 +49,7 @@ public class Store {
     }
 
     public void setCompanyName(String companyName) {
+        //Need to validate input
         this.companyName = companyName;
     }
 
@@ -56,6 +58,7 @@ public class Store {
     }
 
     public void setStreet1(String street1) {
+        //Need to validate input
         this.street1 = street1;
     }
 
@@ -64,6 +67,7 @@ public class Store {
     }
 
     public void setStreet2(String street2) {
+        //Need to validate input
         this.street2 = street2;
     }
 
@@ -72,6 +76,7 @@ public class Store {
     }
 
     public void setCity(String city) {
+        //Need to validate input
         this.city = city;
     }
 
@@ -80,6 +85,7 @@ public class Store {
     }
 
     public void setState(String state) {
+        //Need to validate input
         this.state = state;
     }
 
@@ -88,6 +94,7 @@ public class Store {
     }
 
     public void setZip(String zip) {
+        //Need to validate input
         this.zip = zip;
     }
 
@@ -96,6 +103,7 @@ public class Store {
     }
 
     public void setPhoneNumber(String phoneNumber) {
+        //Need to validate input
         this.phoneNumber = phoneNumber;
     }
     // </editor-fold>

@@ -8,6 +8,7 @@ public class Product {
     
 
     public Product(Discount discount, String productID,  String productDesc, double price) {
+        //Need to validate input
         this.discount = discount;
         this.productID = productID;
         
@@ -21,6 +22,7 @@ public class Product {
     }
     
     public void setDiscountType(Discount discount){
+        //Need to validate input
         this.discount = discount;
     }
     
@@ -33,6 +35,7 @@ public class Product {
     }
 
     public void setProductDesc(String productDesc) {
+        //Need to validate input
         this.productDesc = productDesc;
     }
 
@@ -41,9 +44,8 @@ public class Product {
     }
 
     public void setPrice(double price) {
+        //Need to validate input
         this.price = price;
     }
-    
-    
     
 }

@@ -8,6 +8,7 @@ public class LineItem {
     private StorageManager sm = new StorageManager();
     
     public LineItem(String productID, int qty){
+        //Need to validate input
             sm.setStorageType(new FakeDatabaseReader());
             Product p = sm.getProductById(productID);
             addProduct(p);

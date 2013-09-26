@@ -7,11 +7,13 @@ public class CashRegister {
    private Receipt receipt;
    
    public void startTransaction(String custNo, StorageReader reader){
+       //Need to validate input
        receipt = new Receipt(custNo, reader);
        
    }
    
    public void addItemToReceipt(String productID, int qty){
+       //Need to validate input
        receipt.addItemToLine(productID, qty);
    }
    

@@ -11,6 +11,7 @@ public class FakeDatabaseReader implements StorageReader{
     
     @Override
     public Product getProductByID(String itemNo) {
+        //Need to validate input
         for(Product p : products){
             if(p.getProductID().equals(itemNo)){
                 return p;
@@ -22,6 +23,7 @@ public class FakeDatabaseReader implements StorageReader{
 
     @Override
     public Customer getCustomerbyID(String custNo) {
+        //Need to validate input
        for(Customer c : customers){
             if(c.getCustomerID().equals(custNo)){
                 return c;
