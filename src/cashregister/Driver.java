@@ -2,7 +2,11 @@ package cashregister;
 
 
 public class Driver {
-
+/*
+ * Create Output strategy
+ * Comments in all classes
+ * Validation in all classes
+ */
     
     public static void main(String[] args) {
         

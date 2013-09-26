@@ -1,6 +1,7 @@
 package cashregister;
 
 public class FakeDatabaseReader implements StorageReader{
+    private final String INVALID_INPUT = "You entered invalid input into the FakeDatabaseReader object";
     Product[] products = {new Product(new PercentageDiscount(), "BC001", "Brewers Baseball Cap",  20.00),
                             new Product(new PercentageDiscount(), "BS001", "Polka Dot Bed Sheets", 80.00),
                             new Product(new PercentageDiscount(), "FP001", "Paula Dean Frying Pan", 30.00)};
@@ -11,7 +12,10 @@ public class FakeDatabaseReader implements StorageReader{
     
     @Override
     public Product getProductByID(String itemNo) {
-        //Need to validate input
+        if (itemNo.length() == 0) {
+            throw new IllegalArgumentException(INVALID_INPUT);
+        }
+        
         for(Product p : products){
             if(p.getProductID().equals(itemNo)){
                 return p;
@@ -23,7 +27,9 @@ public class FakeDatabaseReader implements StorageReader{
 
     @Override
     public Customer getCustomerbyID(String custNo) {
-        //Need to validate input
+        if (custNo.length() == 0) {
+            throw new IllegalArgumentException(INVALID_INPUT);
+        }
        for(Customer c : customers){
             if(c.getCustomerID().equals(custNo)){
                 return c;

@@ -1,8 +1,7 @@
 package cashregister;
 
 public class Store {
-    //N66W25225 Silver Spring Dr, Sussex, WI‎
-
+    private final String INVALID_INPUT = "You entered invalid input into the Store object";
     private final String DEFAULT_COMPANY_NAME = "Kohls";
     private final String DEFAULT_STREET1 = "N66W25225 Silver Spring Dr";
     private final String DEFAULT_STREET2 = "";
@@ -34,7 +33,12 @@ public class Store {
     }
 
     public Store(String companyName, String street1, String street2, String city, String state, String zip) {
-        //Need to validate input
+        if(companyName.length() == 0 || street1.length() == 0 || 
+                street2.length() == 0 || city.length() == 0 || 
+                state.length() == 0 || zip.length() == 0){
+            throw new IllegalArgumentException(INVALID_INPUT);
+            
+        }
         this.companyName = companyName;
         this.street1 = street1;
         this.street2 = street2;
@@ -49,7 +53,9 @@ public class Store {
     }
 
     public void setCompanyName(String companyName) {
-        //Need to validate input
+        if(companyName.length() == 0){
+            throw new IllegalArgumentException(INVALID_INPUT);
+        }
         this.companyName = companyName;
     }
 
@@ -58,7 +64,9 @@ public class Store {
     }
 
     public void setStreet1(String street1) {
-        //Need to validate input
+        if(street1.length() == 0){
+            throw new IllegalArgumentException(INVALID_INPUT);
+        }
         this.street1 = street1;
     }
 
@@ -67,7 +75,9 @@ public class Store {
     }
 
     public void setStreet2(String street2) {
-        //Need to validate input
+        if(street2.length() == 0){
+            throw new IllegalArgumentException(INVALID_INPUT);
+        }
         this.street2 = street2;
     }
 
@@ -76,7 +86,9 @@ public class Store {
     }
 
     public void setCity(String city) {
-        //Need to validate input
+        if(city.length() == 0){
+            throw new IllegalArgumentException(INVALID_INPUT);
+        }
         this.city = city;
     }
 
@@ -85,7 +97,9 @@ public class Store {
     }
 
     public void setState(String state) {
-        //Need to validate input
+        if(state.length() == 0){
+            throw new IllegalArgumentException(INVALID_INPUT);
+        }
         this.state = state;
     }
 
@@ -94,7 +108,9 @@ public class Store {
     }
 
     public void setZip(String zip) {
-        //Need to validate input
+        if(zip.length() == 0){
+            throw new IllegalArgumentException(INVALID_INPUT);
+        }
         this.zip = zip;
     }
 
@@ -103,7 +119,9 @@ public class Store {
     }
 
     public void setPhoneNumber(String phoneNumber) {
-        //Need to validate input
+        if(phoneNumber.length() == 0){
+            throw new IllegalArgumentException(INVALID_INPUT);
+        }
         this.phoneNumber = phoneNumber;
     }
     // </editor-fold>
