@@ -1,5 +1,5 @@
 package cashregister;
 
-public interface Discount {
+public interface DiscountStrategy {
     public abstract double returnDiscountedPrice(double price);
 }

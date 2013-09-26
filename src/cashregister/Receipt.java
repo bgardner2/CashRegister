@@ -4,16 +4,17 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
 public class Receipt {
-    //TODO add an output strategy to the constructor
 
     NumberFormat formatter = NumberFormat.getCurrencyInstance();
     DecimalFormat receiptFormatNumber = new DecimalFormat("0000");
-    public static int receiptNumber = 0;
+    private static int receiptNumber = 0;
     private LineItem[] lineItems = new LineItem[1];
     private Customer customer;
     private StorageManager sm = new StorageManager();
+    private OutputManager om  = new OutputManager();
     private Store store = new Store();
 
+    
     /**
      * This constructor takes a customer number argument and a reader argument
      * and sets the customer lookup data source as the reader then looks up the
@@ -22,11 +23,12 @@ public class Receipt {
      * @param custNo
      * @param reader
      */
-    public Receipt(String custNo, StorageReader reader) {
-        if (custNo.length() <= 0 || reader == null) {
+    public Receipt(String custNo, StorageReader reader, OutputStrategy output) {
+        if (custNo.length() <= 0 || reader == null || output == null) {
             throw new IllegalArgumentException("Please enter valid data");
         }
         sm.setStorageType(reader);
+        om.setOutputStratetgy(output);
         customer = sm.getCustomerByID(custNo);
         receiptNumber++;
 
@@ -81,91 +83,38 @@ public class Receipt {
             lineItems = temp;
         }
     }
-    /**
-     * This method returns a fully formatted receipt output
-     * @return 
-     */
-    //TODO move this to an output strategy
-    public String outputReceipt() {
-        return this.buildReceiptHeader()
-                + this.buildItemLineString()
-                + this.buildReceiptFooter();
-    }
     
     /**
-     * This method builds the receipt header which contains
-     * the store object's formatted address, phone number
-     * and customer greeting
-     * @return 
+     * This method outputs the receipt data to the output strategy
      */
-    private String buildReceiptHeader() {
-        String header = "";
-        //Add store information
-        header += store.getFormattedAddress() + "\n"
-                + store.getPhoneNumber() + "\n"
-                + "Transaction Number: #" + receiptFormatNumber.format(receiptNumber)
-                + "\n\n";
+    public void outputReceiptData(){
+        om.returnOutput().outputReceiptData(this);
+    }
+    
 
-        //Add customer greeting
-        header += "Hello, "
-                + customer.getFirstName() + " " + customer.getLastName()
-                + ".\nThank you for shopping at " + store.getCompanyName()
-                + "\n\n";
-
-        return header;
+    // <editor-fold defaultstate="collapsed" desc="Getters and setters">
+    public int getReceiptNumber() {
+        return receiptNumber;
     }
 
-    /**
-     * This method builds the body of the receipt which is all the
-     * items contained on the receipt
-     * @return 
-     */
-    private String buildItemLineString() {
-        String lineHeader = "";
-        String item = "";
-        item += "Product Description\t\t"
-                + "Quantity\t\t\t"
-                + "Product Base Price\t\t"
-                + "Product Extended Price\t\t"
-                + "Price after discount\n\n";
 
-        /*Cycle through the LineItem array and
-         *Add line item information to the body of the receipt
-         */
-        for (LineItem items : lineItems) {
-            item += items.getCurrentLineProduct().getProductDesc() + "\t\t"
-                    + items.getItemQty() + "\t\t\t\t\t"
-                    + formatter.format(items.getCurrentLineProduct().getPrice()) + "\t\t\t\t"
-                    + formatter.format(items.getCurrentLineProduct().getPrice() * items.getItemQty()) + "\t\t\t\t\t"
-                    + formatter.format(items.returnDiscountedPrice() * items.getItemQty())
-                    + "\n";
-        }
-
-        return item;
+    public LineItem[] getLineItems() {
+        return lineItems;
     }
 
-    /**
-     * This method builds the last part of the receipt which contains the
-     * total of the sale and the amount saved with discounts
-     * @return 
-     */
-    private String buildReceiptFooter() {
-        double total = 0;
-        double amountSaved = 0;
 
-        for (LineItem items : lineItems) {
-            total += items.returnDiscountedPrice() * items.getItemQty();
-            amountSaved += (items.getCurrentLineProduct().getPrice() * items.getItemQty())
-                    - items.returnDiscountedPrice() * items.getItemQty();
-
-        }
-
-        String footer = "";
-        footer += "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t------------------------\n";
-        footer += "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" + "Total" + "\t\t" + formatter.format(total);
-        footer += "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" + "Amount Saved" + "\t" + formatter.format(amountSaved);
-
-        return footer;
-
+    public void setSm(StorageManager sm) {
+        this.sm = sm;
     }
+
+    public Store getStore() {
+        return store;
+    }
+    
+    
+    
+    // </editor-fold>
+
+    
+    
 }

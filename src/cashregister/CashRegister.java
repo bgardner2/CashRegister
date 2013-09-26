@@ -1,7 +1,7 @@
 package cashregister;
 
 public class CashRegister {
-    //TODO add endTransaction() method that calls the receipts output method
+
    private Receipt receipt;
    
    /**
@@ -10,15 +10,23 @@ public class CashRegister {
     * @param custNo
     * @param reader 
     */
-   public void startTransaction(String custNo, StorageReader reader){
-       if(custNo.length() <= 0 || reader == null)
+   public void startTransaction(String custNo, StorageReader reader, OutputStrategy output){
+       if(custNo.length() <= 0 || reader == null || output == null)
        {
            throw new IllegalArgumentException("Please enter valid data");
        }
        
-       receipt = new Receipt(custNo, reader);
+       receipt = new Receipt(custNo, reader, output);
        
        
+   }
+   
+   /**
+    * This method ends the transaction and outputs the data to the selected
+    * output strategy
+    */
+   public void endTransaction(){
+       this.outputReceiptData();
    }
    
    /**
@@ -44,8 +52,7 @@ public class CashRegister {
        return receipt.getCustomer().getFirstName();
    }
    
-   //TODO move this method to the receipt object (display strategy)
-   public String printReceipt(){
-       return receipt.outputReceipt();
+   private void outputReceiptData(){
+       receipt.outputReceiptData();
    }
 }

@@ -1,6 +1,6 @@
 package cashregister;
 
-public class FlatRateDiscount implements Discount{
+public class FlatRateDiscount implements DiscountStrategy{
     private final String  INVALID_INPUT = "You entered invalid input into the FlatRateDiscount object";
     @Override
     public double returnDiscountedPrice(double price) {

@@ -1,6 +1,6 @@
 package cashregister;
 
-public class PercentageDiscount implements Discount{
+public class PercentageDiscount implements DiscountStrategy{
     /*
      * TODO
      * Create a setPercentage method

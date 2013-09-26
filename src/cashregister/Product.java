@@ -2,12 +2,12 @@ package cashregister;
 
 public class Product {
     private final String INVALID_INPUT = "You entered invalid input into the Product Object";
-    private Discount discount;
+    private DiscountStrategy discount;
     private String productID;
     private String productDesc;
     private double price;
 
-    public Product(Discount discount, String productID, String productDesc, double price) {
+    public Product(DiscountStrategy discount, String productID, String productDesc, double price) {
         if (discount == null || productID.length() == 0
                 || productDesc.length() == 0 || price < 0) {
             throw new IllegalArgumentException(INVALID_INPUT);
@@ -24,7 +24,7 @@ public class Product {
         return productID;
     }
 
-    public void setDiscountType(Discount discount) {
+    public void setDiscountType(DiscountStrategy discount) {
         if (discount == null) {
             throw new IllegalArgumentException(INVALID_INPUT);
         }
